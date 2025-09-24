@@ -6,24 +6,162 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Портфолио</title>
 	<style>
-		a{
-			display:block;
-			font-size:30px;
-			font-family: sans-serif;
+		:root{
+			--bg:#0f1115;
+			--card:#141821;
+			--text:#e6e6e6;
+			--muted:#a3a7b3;
+			--accent:#7aa2f7;
+			--border:rgba(255,255,255,0.08);
+		}
+
+		*{box-sizing:border-box}
+		html,body{height:100%}
+		body{
+			margin:0;
+			font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+			background:var(--bg);
+			color:var(--text);
+			line-height:1.5;
+			-webkit-font-smoothing:antialiased;
+			-moz-osx-font-smoothing:grayscale;
+		}
+
+		.container{
+			max-width:1000px;
+			margin:0 auto;
+			padding:48px 20px 80px;
+		}
+
+		header{
+			display:flex;
+			flex-direction:column;
+			gap:10px;
+			padding:28px 0 24px;
+			position:sticky;
+			top:0;
+			background:linear-gradient(to bottom, rgba(15,17,21,0.95), rgba(15,17,21,0.7) 60%, rgba(15,17,21,0));
+			backdrop-filter:saturate(140%) blur(4px);
+			border-bottom:1px solid var(--border);
+			margin-bottom:24px;
+		}
+
+		.title{
+			font-size:28px;
+			font-weight:700;
+			letter-spacing:0.2px;
+		}
+		.subtitle{
+			color:var(--muted);
+			font-size:14px;
+		}
+
+		.grid{
+			display:grid;
+			grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+			gap:16px;
+		}
+
+		.card{
+			display:flex;
+			flex-direction:column;
+			gap:8px;
+			padding:18px 16px;
+			background:var(--card);
+			border:1px solid var(--border);
+			border-radius:12px;
+			text-decoration:none;
+			color:var(--text);
+			transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+			box-shadow:0 1px 0 rgba(255,255,255,0.03), 0 6px 18px rgba(0,0,0,0.35);
+		}
+		.card:hover{
+			transform:translateY(-3px);
+			border-color:rgba(122,162,247,0.35);
+			box-shadow:0 4px 0 rgba(255,255,255,0.04), 0 14px 32px rgba(0,0,0,0.45);
+		}
+		.card h3{
+			margin:0;
+			font-size:18px;
+			font-weight:600;
+			letter-spacing:0.2px;
+		}
+		.card p{
+			margin:0;
+			color:var(--muted);
+			font-size:13px;
+		}
+		.card .arrow{
+			margin-left:auto;
+			color:var(--accent);
+			opacity:.9;
+		}
+
+		.section-title{
+			margin:6px 0 12px;
+			font-size:13px;
+			letter-spacing:0.7px;
+			text-transform:uppercase;
+			color:var(--muted);
+		}
+
+		footer{
+			margin-top:36px;
+			padding-top:18px;
+			border-top:1px solid var(--border);
+			color:var(--muted);
+			font-size:12px;
 		}
 	</style>
 </head>
 <body>
-	<a href="/granit">Granit</a>
-	<a href="/body-repair">Кузовной ремонт</a>
-	<a href="/market-elements">Market Elements</a>
-	<a href="/silon">Silon</a>
-	<a href="/bankruptcy-agency">Агентство по банкротству</a>
-	<a href="/kargo">Перевозки из Китая(kargo)</a>
-	
-	<hr>
-	<a href="/users_table">React приложение. Таблица пользователей</a>
-	<hr>
-	
+	<div class="container">
+		<header>
+			<div class="title">Моё портфолио</div>
+			<div class="subtitle">Подборка моих работ: сайты и интерфейсы</div>
+		</header>
+
+		<div class="section-title">Проекты</div>
+		<div class="grid">
+			<a class="card" href="/granit">
+				<h3>Granit</h3>
+				<p>Сайт для компании по камню и изделиям</p>
+				<span class="arrow">→</span>
+			</a>
+			<a class="card" href="/body-repair">
+				<h3>Кузовной ремонт</h3>
+				<p>Автосервис: услуги, заявка, галерея работ</p>
+				<span class="arrow">→</span>
+			</a>
+			<a class="card" href="/market-elements">
+				<h3>Market Elements</h3>
+				<p>Промо-проект с каталогом и карточками</p>
+				<span class="arrow">→</span>
+			</a>
+			<a class="card" href="/silon">
+				<h3>Silon</h3>
+				<p>Лендинг с акцентом на чистую типографику</p>
+				<span class="arrow">→</span>
+			</a>
+			<a class="card" href="/bankruptcy-agency">
+				<h3>Агентство по банкротству</h3>
+				<p>Корпоративный сайт с формой консультации</p>
+				<span class="arrow">→</span>
+			</a>
+			<a class="card" href="/kargo">
+				<h3>Перевозки из Китая (kargo)</h3>
+				<p>Логистика: тарифы, маршруты, CTA</p>
+				<span class="arrow">→</span>
+			</a>
+		</div>
+
+		<footer>
+			© <span id="year"></span> — Евгений Закреничный. Связаться: <a style="color:var(--accent);text-decoration:none" href="https://t.me/zillou1111">@zillou1111</a>
+		</footer>
+	</div>
+
+	<script>
+		document.getElementById('year').textContent = new Date().getFullYear();
+	</script>
 </body>
 </html>
